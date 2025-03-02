@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Expense Tracker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-app="expenseApp" ng-controller="ExpenseController">
+
+    <div class="container">
+        <h2>Expense Tracker</h2>
+
+        <!-- Input Fields -->
+        <input type="text" ng-model="expense.description" placeholder="Expense Description">
+        <input type="number" ng-model="expense.amount" placeholder="Amount">
+        <input type="date" ng-model="expense.date">
+
+        <!-- Add Expense Button -->
+        <button ng-click="addExpense()">Add Expense</button>
+
+        <!-- Expense List -->
+        <h3>Total Expenses: {{ getTotal() | currency }}</h3>
+        <ul>
+            <li ng-repeat="exp in expenses">
+                {{ exp.description }} - {{ exp.amount | currency }} on {{ exp.date | date:'dd-MMM-yyyy' }}
+                <button class="delete" ng-click="removeExpense($index)">X</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="expense_app.js"></script>
+</body>
+</html>
